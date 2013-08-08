@@ -37,4 +37,9 @@ public class StringUtilTest {
     public void shouldReturnFalseWhenTwoWordsWithSameLettersButDifferentLetterCountGiven() {
         assertFalse(isAnagram("abbc", "abc"));
     }
+
+    @Test
+    public void shouldReturnTrueWhenTwoWordsWithSameLettersButDifferentCasingGiven() {
+        assertTrue(isAnagram("Abc", "aBC"));
+    }
 }

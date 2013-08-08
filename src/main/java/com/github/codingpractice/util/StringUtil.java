@@ -3,6 +3,8 @@ package com.github.codingpractice.util;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Character.toLowerCase;
+
 /**
  * @author Patrick Kranz
  */
@@ -18,15 +20,15 @@ public final class StringUtil {
 
         Map<Character, Integer> characterCount = new HashMap<>();
         for (int i = 0; i<first.length(); i++) {
-            Character current = first.charAt(i);
-            if ((current >= 'a' && current <= 'z') || (current >= 'A' && current <= 'Z')) {
-                incrementCharacter(characterCount, current);
+            Character current = toLowerCase(first.charAt(i));
+            if (current >= 'a' && current <= 'z') {
+                incrementCharacter(characterCount, toLowerCase(current));
             }
         }
 
         for (int i=0; i<second.length(); i++) {
-            Character current = second.charAt(i);
-            if ((current >= 'a' && current <= 'z') || (current <= 'A' && current <= 'Z')) {
+            Character current = toLowerCase(second.charAt(i));
+            if (current >= 'a' && current <= 'z') {
                 if (characterCount.containsKey(current)) {
                     Integer newValue = characterCount.get(current) - 1;
                     if (newValue == 0) {
