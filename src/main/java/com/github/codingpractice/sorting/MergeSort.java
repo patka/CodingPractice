@@ -1,6 +1,10 @@
 package com.github.codingpractice.sorting;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
 
 /**
  * @author Patrick Kranz
@@ -55,5 +59,44 @@ public class MergeSort {
                 left--;
             }
         }
+    }
+
+    public static <T extends Comparable<T>> List<T> sort(List<T> toSort) {
+        if (toSort == null) {
+            return emptyList();
+        }
+        if (toSort.size() <= 1) {
+            return toSort;
+        }
+
+        int middle = toSort.size() / 2;
+        // the subList is only a view therefore this is no memory problem
+        List<T> firstHalf = sort(toSort.subList(0, middle));
+        List<T> secondHalf = sort(toSort.subList(middle, toSort.size()));
+
+        int numberOfElements = firstHalf.size() + secondHalf.size();
+        List<T> result = new ArrayList<>(numberOfElements);
+
+        // now we merge
+        int firstIndex = 0;
+        int secondIndex = 0;
+        for (int i = 0; i<numberOfElements; i++) {
+            if (firstIndex == firstHalf.size()) {
+                // copy remaining elements from secondHalf
+                result.add(secondHalf.get(secondIndex++));
+                continue;
+            }
+            if (secondIndex == secondHalf.size()) {
+                // copy remaining elements from firstHalf
+                result.add(firstHalf.get(firstIndex++));
+                continue;
+            }
+            if (firstHalf.get(firstIndex).compareTo(secondHalf.get(secondIndex)) <= 0) {
+                result.add(firstHalf.get(firstIndex++));
+            } else {
+                result.add(secondHalf.get(secondIndex++));
+            }
+        }
+        return result;
     }
 }
