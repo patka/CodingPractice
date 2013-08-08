@@ -32,4 +32,9 @@ public class StringUtilTest {
     public void shouldReturnTrueWhenTwoAnagramStringsWithWhitespaceGiven() {
         assertTrue(isAnagram("abc cde", "cdeabc"));
     }
+
+    @Test
+    public void shouldReturnFalseWhenTwoWordsWithSameLettersButDifferentLetterCountGiven() {
+        assertFalse(isAnagram("abbc", "abc"));
+    }
 }

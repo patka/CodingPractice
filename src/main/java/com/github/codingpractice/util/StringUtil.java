@@ -19,13 +19,13 @@ public final class StringUtil {
         Map<Character, Integer> characterCount = new HashMap<>();
         for (int i = 0; i<first.length(); i++) {
             Character current = first.charAt(i);
-            if ((current >= 'a' && current <= 'z') || (current <= 'A' && current <= 'Z')) {
+            if ((current >= 'a' && current <= 'z') || (current >= 'A' && current <= 'Z')) {
                 incrementCharacter(characterCount, current);
             }
         }
 
         for (int i=0; i<second.length(); i++) {
-            Character current = first.charAt(i);
+            Character current = second.charAt(i);
             if ((current >= 'a' && current <= 'z') || (current <= 'A' && current <= 'Z')) {
                 if (characterCount.containsKey(current)) {
                     Integer newValue = characterCount.get(current) - 1;
@@ -40,7 +40,7 @@ public final class StringUtil {
             }
         }
 
-        return true;
+        return characterCount.isEmpty();
     }
 
     private static void incrementCharacter(Map<Character, Integer> characters,
