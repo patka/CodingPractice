@@ -21,10 +21,15 @@ public class BinarySearchTest {
         assertEquals(2, search(haystack, 4));
     }
 
-
     @Test
     public void shouldReturnMinusOneWhenHaystackWithoutNeedleGiven() {
         int[] haystack = new int[] { 2, 3, 4, 5, 6, 7, 8 };
         assertEquals(-1, search(haystack, 1));
+    }
+
+    @Test
+    public void shouldReturnCorrectValueWhenHaystackWithOneElementGiven() {
+        int[] haystack = new int[] { 2 };
+        assertEquals(0, search(haystack, 2));
     }
 }

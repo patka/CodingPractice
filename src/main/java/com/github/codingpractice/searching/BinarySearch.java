@@ -13,7 +13,7 @@ public class BinarySearch {
     }
 
     public static int search(int[] haystack, int needle, int lowerIndex, int upperIndex) {
-        if (lowerIndex >= upperIndex) {
+        if (lowerIndex > upperIndex) {
             return -1;
         }
         int middle = (lowerIndex + upperIndex) / 2;
