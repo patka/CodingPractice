@@ -2,6 +2,7 @@ package com.github.codingpractice.exercises;
 
 import org.junit.Test;
 
+import static com.github.codingpractice.exercises.SortingExercises.sortAnagramsNextToEachOtherWithoutWhitespace;
 import static com.github.codingpractice.exercises.SortingExercises.sortAnagramsNextToEachOtherBruteForce;
 import static org.junit.Assert.assertArrayEquals;
 
@@ -42,5 +43,12 @@ public class SortingExercisesTest {
         String[] toSort = new String[] { "c", "ba", "ab" };
         sortAnagramsNextToEachOtherBruteForce(toSort);
         assertArrayEquals(new String[] { "ba", "ab", "c" }, toSort);
+    }
+
+    @Test
+    public void shouldReturnArrayWithGroupedAnagramsWhenArrayWithTwoAnagramGroupsGiven() {
+        String[] toSort = new String[] { "c", "ba", "ad", "ab", "da", "abc", "cba", "bac" };
+        String[] result = sortAnagramsNextToEachOtherWithoutWhitespace(toSort);
+        assertArrayEquals(new String[] { "ba", "ab", "abc", "cba", "bac", "ad", "da", "c" }, result);
     }
 }
