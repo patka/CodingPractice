@@ -32,4 +32,16 @@ public class BinarySearchTest {
         int[] haystack = new int[] { 2 };
         assertEquals(0, search(haystack, 2));
     }
+
+    @Test
+    public void shouldReturnMinusOneWhenOneElementHaystackWithoutNeedleGiven() {
+        int[] haystack = new int[] { 2 };
+        assertEquals(-1, search(haystack, 3));
+    }
+
+    @Test
+    public void shouldReturnMinuseOneWhenEmptyHaystackGiven() {
+        int[] haystack = new int[] { 2 };
+        assertEquals(-1, search(haystack, 3));
+    }
 }
