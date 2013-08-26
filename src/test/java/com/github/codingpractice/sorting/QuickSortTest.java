@@ -34,4 +34,11 @@ public class QuickSortTest {
         sort(unsorted);
         assertArrayEquals(new int[] {3, 3, 7, 9, 9, 10, 11, 12 }, unsorted);
     }
+
+    @Test
+    public void shouldSortArrayWhenArrayWithOneElementGiven() {
+        int[] unsorted = new int[] { 1 };
+        sort(unsorted);
+        assertArrayEquals(new int[] { 1 }, unsorted);
+    }
 }
