@@ -1,13 +1,13 @@
 package com.github.codingpractice.dynamic;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Patrick Kranz
  */
 public class Fibonacci {
-    private static final Map<Integer, Long> resultCache = new HashMap<>();
+    private static final Map<Integer, Long> resultCache = new ConcurrentHashMap<>();
 
     private Fibonacci() {
         // prevent instance creation
