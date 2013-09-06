@@ -9,29 +9,41 @@ import static junit.framework.Assert.*;
  */
 public class BinaryTreeTest {
     @Test
-    public void shouldReturnTrueWhenElementToInsertGiven() {
+    public void shouldReturnZeroWhenEmptyTreeGiven() {
         BinaryTree<Integer> tree = new BinaryTree<>();
-        assertTrue(tree.add(5));
+        assertEquals(0, tree.size());
     }
 
     @Test
-    public void shouldReturnTrueWhenTwoDifferentElementsGiven() {
+    public void shouldReturnFiveWhenTreeWithFiveElementsGiven() {
         BinaryTree<Integer> tree = new BinaryTree<>();
-        assertTrue(tree.add(5));
-        assertTrue(tree.add(7));
-    }
-
-    @Test
-    public void shouldReturnFalseWhenSameElementTwiceGiven() {
-        BinaryTree<Integer> tree = new BinaryTree<>();
-        assertTrue(tree.add(5));
-        assertFalse(tree.add(5));
+        tree.add(5);
+        tree.add(4);
+        tree.add(8);
+        tree.add(9);
+        tree.add(7);
+        assertEquals(5, tree.size());
     }
 
     @Test
     public void shouldReturnEmptyStringWhenNoElementGiven() {
         BinaryTree<Integer> tree = new BinaryTree<>();
         assertTrue(tree.getInOrder().isEmpty());
+    }
+
+    @Test
+    public void shouldReturnEmptyStringWhenNoElementForLevelOrderGiven() {
+        BinaryTree<Integer> tree = new BinaryTree<>();
+        assertEquals("", tree.getLevelOrder());
+    }
+
+    @Test
+    public void shouldReturnElementsInLevelOrderWhenElementsGiven() {
+        BinaryTree<Integer> tree  = new BinaryTree<>();
+        tree.add(5);
+        tree.add(4);
+        tree.add(6);
+        assertEquals("5 4 6", tree.getLevelOrder());
     }
 
     @Test
