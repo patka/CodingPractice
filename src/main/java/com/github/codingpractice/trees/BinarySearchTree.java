@@ -45,6 +45,8 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return head.getRight() == null;
     }
 
+
+
     public T getMaxValue() {
         ensureContainsElements();
         TreeNode<T> tree = head.getRight();
@@ -54,7 +56,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
     }
 
     private void ensureContainsElements() {
-        if (head.getRight() == null) {
+        if (isEmpty()) {
             throw new IllegalStateException("Tree contains no elements");
         }
    }
@@ -73,10 +75,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return builder.toString().trim();
     }
 
-    private void getInOrder(StringBuilder builder, TreeNode<T> tree) {
+    private static <T> void getInOrder(StringBuilder builder, TreeNode<T> tree) {
         if (tree == null) return;
         getInOrder(builder, tree.getLeft());
-        builder.append(tree.getValue().toString()).append(" ");
+        builder.append(tree.getValue()).append(" ");
         getInOrder(builder, tree.getRight());
+    }
+
+    public String getPostOrder() {
+        StringBuilder builder = new StringBuilder();
+        getPostOrder(builder, head.getRight());
+        return builder.toString().trim();
+    }
+
+    private static <T> void getPostOrder(StringBuilder builder, TreeNode<T> tree) {
+        if (tree == null) return;
+        getPostOrder(builder, tree.getLeft());
+        getPostOrder(builder, tree.getRight());
+        builder.append(tree.getValue()).append(" ");
     }
 }
