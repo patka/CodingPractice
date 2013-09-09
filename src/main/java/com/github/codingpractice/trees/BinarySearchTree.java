@@ -45,7 +45,19 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return head.getRight() == null;
     }
 
+    public int maxDepth() {
+        if (isEmpty()) return 0;
+        return maxDepth(head.getRight());
+    }
 
+    private int maxDepth(TreeNode<T> tree) {
+        if (tree == null) return 0;
+        int leftDepth = maxDepth(tree.getLeft());
+        int rightDepth = maxDepth(tree.getRight());
+
+        if (leftDepth > rightDepth) return leftDepth + 1;
+        else return rightDepth + 1;
+    }
 
     public T getMaxValue() {
         ensureContainsElements();
@@ -93,5 +105,27 @@ public class BinarySearchTree<T extends Comparable<T>> {
         getPostOrder(builder, tree.getLeft());
         getPostOrder(builder, tree.getRight());
         builder.append(tree.getValue()).append(" ");
+    }
+
+    public static boolean hasPathSum(BinarySearchTree<Integer> tree, int sum) {
+        if (tree.isEmpty() && sum == 0) return true;
+        return hasPathSum(tree.head.getRight(), 0, sum);
+    }
+
+    private static boolean hasPathSum(TreeNode<Integer> tree, int calculatedSum, int sum) {
+        if (tree.getRight() == null && tree.getLeft() == null) {
+            return calculatedSum + tree.getValue() == sum;
+        };
+
+        boolean left = false;
+        boolean right = false;
+        calculatedSum += tree.getValue();
+        if (tree.getRight() != null) {
+            right = hasPathSum(tree.getRight(), calculatedSum, sum);
+        }
+        if (tree.getLeft() != null) {
+            left = hasPathSum(tree.getLeft(), calculatedSum, sum);
+        }
+        return left || right;
     }
 }
