@@ -4,9 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static com.github.codingpractice.trees.BinarySearchTree.hasPathSum;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * @author Patrick Kranz
@@ -104,5 +102,22 @@ public class BinarySearchTreeTest {
         assertTrue(hasPathSum(bst, 12));
         assertTrue(hasPathSum(bst, 20));
         assertTrue(hasPathSum(bst, 25));
+    }
+
+    @Test
+    public void shouldReturnZeroHeightWhenEmptyTreeGiven() {
+        assertEquals(0, bst.height());
+    }
+
+    @Test
+    public void shouldReturnOneWhenOnlyRootGiven() {
+        bst.add(5);
+        assertEquals(1, bst.height());
+    }
+
+    @Test
+    public void shouldReturnCorrectHeightWhenMultipleValuesGiven() {
+        bst.add(5).add(8).add(12).add(7).add(4).add(3);
+        assertEquals(3, bst.height());
     }
 }

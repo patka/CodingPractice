@@ -128,4 +128,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
         }
         return left || right;
     }
+
+    public int height() {
+        if (isEmpty()) return 0;
+        return height(head);
+    }
+
+    private int height(TreeNode<T> tree) {
+        if (tree == null) return 0;
+        int left = 0;
+        int right = 0;
+        if (tree.getRight() != null) {
+            right = height(tree.getRight()) + 1;
+        }
+        if (tree.getLeft() != null) {
+            left = height(tree.getLeft()) + 1;
+        }
+        if (right > left) return right;
+        return left;
+    }
 }
